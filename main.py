@@ -1,92 +1,105 @@
 import streamlit as st
 
-st.set_page_config(page_title="Enciclopedia de Ciencias Básicas", layout="wide")
+st.set_page_config(page_title="Enciclopedia Universal de Ciencias", layout="wide")
 
-# Estilos visuales para resaltar fórmulas y texto
+# --- ESTILOS DE LIBRO TÉCNICO ---
 st.markdown("""
     <style>
-    .texto-profundo { font-size: 18px; line-height: 1.8; text-align: justify; color: #1a202c; }
-    .caja-formula { background-color: #f1f5f9; border: 2px solid #3b82f6; padding: 20px; border-radius: 10px; margin: 20px 0; }
-    .explicacion-paso { color: #065f46; font-weight: bold; border-left: 4px solid #10b981; padding-left: 15px; }
+    .titulo-principal { color: #1e3a8a; font-size: 45px; font-weight: bold; border-bottom: 4px solid #3b82f6; }
+    .texto-profundo { font-size: 19px; line-height: 1.9; text-align: justify; color: #1a202c; padding: 10px; }
+    .caja-ley { background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.05); }
+    .nota-ingeniero { border-left: 5px solid #eab308; background-color: #fefce8; padding: 15px; margin: 20px 0; font-style: italic; }
+    .paso-titulo { color: #1e40af; font-weight: bold; font-size: 22px; margin-top: 20px; }
     </style>
     """, unsafe_allow_html=True)
 
-st.sidebar.title("📚 Biblioteca Total")
-tomo = st.sidebar.selectbox("Selecciona un Tomo:", 
-    ["Tomo I: Aritmética Avanzada", "Tomo II: Álgebra", "Tomo III: Física", "Tomo IV: Química"])
+# --- NAVEGACIÓN DE BIBLIOTECA ---
+st.sidebar.title("📚 Biblioteca Universal")
+tomo = st.sidebar.selectbox("Seleccionar Tomo:", 
+    ["Tomo I: Aritmética y Teoría Numérica", "Tomo II: Álgebra", "Tomo III: Física", "Tomo IV: Química"])
 
-if tomo == "Tomo I: Aritmética Avanzada":
-    st.title("🔢 Tomo I: Fundamentos Numéricos y Operaciones")
+if tomo == "Tomo I: Aritmética y Teoría Numérica":
+    st.markdown("<div class='titulo-principal'>Tomo I: El Fundamento de las Cantidades</div>", unsafe_allow_html=True)
     
-    capitulo = st.sidebar.radio("Capítulos:", [
-        "1.1 Leyes de los Signos (El Corazón de la Operación)", 
-        "1.2 Teoría de Fracciones (Partición y Proporción)", 
-        "1.3 Potenciación y Radicación (Crecimiento Exponencial)"
+    capitulo = st.sidebar.radio("Navegar por los Capítulos:", [
+        "1.1 Los Signos y la Lógica Operativa", 
+        "1.2 Fracciones, Decimales y Porcentajes", 
+        "1.3 Potencias, Raíces y Logaritmos",
+        "1.4 Jerarquía de Operaciones (PEMDAS)",
+        "1.5 Proporcionalidad (Regla de Tres Simple y Compuesta)"
     ])
 
-    if capitulo == "1.1 Leyes de los Signos (El Corazón de la Operación)":
-        st.header("1.1 Leyes de los Signos: Dirección y Magnitud")
+    # --- CAPÍTULO 1.1 ---
+    if capitulo == "1.1 Los Signos y la Lógica Operativa":
+        st.header("1.1 El Dominio de los Signos: Leyes Universales")
         st.markdown("<div class='texto-profundo'>", unsafe_allow_html=True)
         st.write("""
-        En ingeniería y matemáticas generales, el signo nos dice hacia dónde va la cantidad. 
-        Para dominar esto, debemos separar las reglas de la **Suma** de las reglas de la **Multiplicación**.
+        Para un estudiante de ingeniería, los signos no son adornos; son **operadores de dirección**. En el mundo real, un signo negativo puede significar una fuerza de compresión, una deuda financiera o un retroceso en una trayectoria.
         """)
         
-        st.subheader("A) Reglas para Suma y Resta")
-        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
-        st.latex(r"(+) + (+) = (+)")
-        st.latex(r"(-) + (-) = (-)")
-        st.latex(r"(+) + (-) = \text{Signo del número con mayor valor absoluto}")
-        st.markdown("</div>", unsafe_allow_html=True)
-        st.write("""
-        <p class='explicacion-paso'>¿Cómo leer esto?</p>
-        Si sumas dos deudas, tendrás una deuda más grande. Si sumas un número positivo y uno negativo, imagina una cuerda: el número más fuerte (más grande) arrastra el resultado hacia su signo.
-        """, unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+            st.subheader("Ley de la Adición (Suma/Resta)")
+            st.write("Cuando los signos son iguales, las magnitudes se acumulan:")
+            st.latex(r"(-a) + (-b) = -(a+b)")
+            st.write("Cuando los signos son diferentes, las magnitudes se restan:")
+            st.latex(r"a + (-b) = a - b")
+            st.markdown("</div>", unsafe_allow_html=True)
+            
+        with col2:
+            st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+            st.subheader("Ley del Producto (Multiplicación/División)")
+            st.latex(r"(+) \times (+) = (+)")
+            st.latex(r"(-) \times (-) = (+)")
+            st.latex(r"(+) \times (-) = (-)")
+            st.latex(r"(-) \times (+) = (-)")
+            st.markdown("</div>", unsafe_allow_html=True)
 
-        st.subheader("B) Reglas para Multiplicación y División")
-        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
-        st.latex(r"(+) \cdot (+) = (+)")
-        st.latex(r"(-) \cdot (-) = (+)")
-        st.latex(r"(+) \cdot (-) = (-)")
-        st.latex(r"(-) \cdot (+) = (-)")
-        st.markdown("</div>", unsafe_allow_html=True)
-        st.write("""
-        <p class='explicacion-paso'>El fundamento:</p>
-        Multiplicar por un negativo es una orden de 'invertir'. Si inviertes algo que ya estaba invertido (negativo), vuelve a ser original (positivo).
-        """, unsafe_allow_html=True)
-
-    elif capitulo == "1.2 Teoría de Fracciones (Partición y Proporción)":
-        st.header("1.2 El Operador Fraccionario")
-        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
-        st.write("**Suma y Resta (Método de la Mariposa/MCM):**")
-        st.latex(r"\frac{a}{b} \pm \frac{c}{d} = \frac{ad \pm bc}{bd}")
-        st.write("**Multiplicación (Directa):**")
-        st.latex(r"\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}")
-        st.write("**División (Inversa/Oreja):**")
-        st.latex(r"\frac{a}{b} \div \frac{c}{d} = \frac{ad}{bc}")
-        st.markdown("</div>", unsafe_allow_html=True)
-        st.write("""
-        <p class='explicacion-paso'>Análisis de la Fórmula:</p>
-        En la multiplicación, el numerador ($a$) se multiplica directamente por el otro numerador ($c$). No necesitas buscar comunes denominadores porque estás creando una nueva unidad de medida.
-        """, unsafe_allow_html=True)
-
-    elif capitulo == "1.3 Potenciación y Radicación (Crecimiento Exponencial)":
-        st.header("1.3 Potencias: Multiplicación Abreviada")
-        st.write("Las potencias nos dicen cuántas veces se multiplica la **Base** por sí misma.")
+    # --- CAPÍTULO 1.3 ---
+    elif capitulo == "1.3 Potencias, Raíces y Logaritmos":
+        st.header("1.3 Operaciones de Orden Superior")
         
-        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
-        st.latex(r"a^n \cdot a^m = a^{n+m}")
-        st.latex(r"\frac{a^n}{a^m} = a^{n-m}")
-        st.latex(r"(a^n)^m = a^{n \cdot m}")
-        st.latex(r"a^0 = 1 \quad (a \neq 0)")
+        st.markdown("<div class='paso-titulo'>Leyes de los Exponentes (Fundamento del Crecimiento)</div>", unsafe_allow_html=True)
+        st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+        st.latex(r"a^m \cdot a^n = a^{m+n}")
+        st.latex(r"\frac{a^m}{a^n} = a^{m-n}")
+        st.latex(r"(a^m)^n = a^{m \cdot n}")
+        st.latex(r"(a \cdot b)^n = a^n \cdot b^n")
+        st.latex(r"a^{-n} = \frac{1}{a^n}")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        st.write("""
-        <p class='explicacion-paso'>¿Por qué se suman los exponentes?</p>
-        Si tienes $2^2 \cdot 2^3$, en realidad tienes $(2 \cdot 2) \cdot (2 \cdot 2 \cdot 2)$. En total hay cinco '2'. Por eso $2+3=5$. La fórmula es solo el resumen de lo que ves.
-        """, unsafe_allow_html=True)
+        st.markdown("<div class='paso-titulo'>Radicación: La operación inversa</div>", unsafe_allow_html=True)
+        st.write("Una raíz es en realidad una potencia con un exponente fraccionario.")
+        st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+        st.latex(r"\sqrt[n]{a} = a^{1/n}")
+        st.latex(r"\sqrt[n]{a \cdot b} = \sqrt[n]{a} \cdot \sqrt[n]{b}")
+        st.latex(r"\sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}}")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-# Espacio para los siguientes tomos
+        st.markdown("<div class='paso-titulo'>Logaritmos: ¿A qué potencia debo elevar?</div>", unsafe_allow_html=True)
+        st.write("El logaritmo responde a la pregunta: ¿Cuántas veces debo multiplicar la base para llegar al número?")
+        st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+        st.latex(r"\log_b(x) = y \iff b^y = x")
+        st.latex(r"\log(a \cdot b) = \log(a) + \log(b)")
+        st.latex(r"\log\left(\frac{a}{b}\right) = \log(a) - \log(b)")
+        st.latex(r"\log(a^n) = n \cdot \log(a)")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    # --- CAPÍTULO 1.5 ---
+    elif capitulo == "1.5 Proporcionalidad (Regla de Tres Simple y Compuesta)":
+        st.header("1.5 Relaciones de Proporción")
+        st.write("Esta es la herramienta más usada en la vida cotidiana y técnica para escalar medidas.")
+        
+        st.subheader("1. Regla de Tres Simple Directa")
+        st.write("Si una variable sube y la otra también (ejemplo: más gasolina = más kilómetros).")
+        st.latex(r"\frac{a}{b} = \frac{c}{x} \implies x = \frac{b \cdot c}{a}")
+        
+        st.subheader("2. Regla de Tres Simple Inversa")
+        st.write("Si una variable sube y la otra baja (ejemplo: más obreros = menos tiempo de trabajo).")
+        st.latex(r"a \cdot b = c \cdot x \implies x = \frac{a \cdot b}{c}")
+
+# --- SECCIÓN PARA FUTUROS TOMOS ---
 elif tomo == "Tomo II: Álgebra":
-    st.title("📐 Tomo II: Álgebra General")
-    st.info("Próximamente: Leyes de Newton, Ecuaciones de primer grado y Factorización.")
+    st.header("📐 Tomo II: Álgebra General")
+    st.write("Estamos preparando el despliegue de **Factorización**, **Productos Notables** y **Sistemas de Ecuaciones** con la misma profundidad.")
