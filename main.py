@@ -1,94 +1,92 @@
 import streamlit as st
 
-# Configuración de página para máxima lectura
-st.set_page_config(page_title="Enciclopedia Universal de Ciencias", layout="wide")
+st.set_page_config(page_title="Enciclopedia de Ciencias Básicas", layout="wide")
 
-# --- DISEÑO DE INTERFAZ ---
+# Estilos visuales para resaltar fórmulas y texto
 st.markdown("""
     <style>
-    .titulo-tomo { color: #1e3a8a; font-size: 40px; font-weight: bold; border-bottom: 3px solid #1e3a8a; }
-    .seccion-lectura { background-color: #ffffff; padding: 30px; border-radius: 10px; line-height: 1.6; font-size: 18px; }
-    .destaque { background-color: #e0f2fe; padding: 15px; border-radius: 5px; border-left: 5px solid #0369a1; margin: 20px 0; }
+    .texto-profundo { font-size: 18px; line-height: 1.8; text-align: justify; color: #1a202c; }
+    .caja-formula { background-color: #f1f5f9; border: 2px solid #3b82f6; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .explicacion-paso { color: #065f46; font-weight: bold; border-left: 4px solid #10b981; padding-left: 15px; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- SISTEMA DE NAVEGACIÓN ---
 st.sidebar.title("📚 Biblioteca Total")
-tomo = st.sidebar.selectbox("Seleccionar Tomo:", 
-    ["Tomo I: Aritmética (El origen)", "Tomo II: Álgebra (Generalización)", "Tomo III: Geometría", "Tomo IV: Física", "Tomo V: Química"])
+tomo = st.sidebar.selectbox("Selecciona un Tomo:", 
+    ["Tomo I: Aritmética Avanzada", "Tomo II: Álgebra", "Tomo III: Física", "Tomo IV: Química"])
 
-# --- CONTENIDO DEL TOMO I: ARITMÉTICA ---
-if tomo == "Tomo I: Aritmética (El origen)":
-    st.markdown("<div class='titulo-tomo'>Tomo I: El Arte de Contar y la Lógica Numérica</div>", unsafe_allow_html=True)
+if tomo == "Tomo I: Aritmética Avanzada":
+    st.title("🔢 Tomo I: Fundamentos Numéricos y Operaciones")
     
-    capitulo = st.sidebar.radio("Capítulos del Tomo I:", [
-        "1.1 Filosofía de la Unidad", 
-        "1.2 Sistemas de Numeración (Historia y Lógica)", 
-        "1.3 Operaciones Fundamentales (Deducción)", 
-        "1.4 Fracciones y la Partición del Todo",
-        "1.5 Potenciación y Radicación desde Cero"
+    capitulo = st.sidebar.radio("Capítulos:", [
+        "1.1 Leyes de los Signos (El Corazón de la Operación)", 
+        "1.2 Teoría de Fracciones (Partición y Proporción)", 
+        "1.3 Potenciación y Radicación (Crecimiento Exponencial)"
     ])
 
-    if capitulo == "1.1 Filosofía de la Unidad":
-        st.write("## 1.1 ¿Qué es un número? El origen de la abstracción")
-        st.markdown("""
-        <div class='seccion-lectura'>
-        Las matemáticas no nacen con la escritura, nacen con la capacidad del cerebro de separar un objeto del resto. 
-        A esto lo llamamos <b>Unidad</b>. 
+    if capitulo == "1.1 Leyes de los Signos (El Corazón de la Operación)":
+        st.header("1.1 Leyes de los Signos: Dirección y Magnitud")
+        st.markdown("<div class='texto-profundo'>", unsafe_allow_html=True)
+        st.write("""
+        En ingeniería y matemáticas generales, el signo nos dice hacia dónde va la cantidad. 
+        Para dominar esto, debemos separar las reglas de la **Suma** de las reglas de la **Multiplicación**.
+        """)
         
-        ### El Concepto de Conjunto
-        Antes de sumar, el ser humano tuvo que entender que varios objetos pueden ser vistos como un solo grupo. 
-        Si tienes tres piedras, la mente hace un salto increíble: deja de ver "piedra, piedra, piedra" y empieza a ver el concepto "3".
-        
-        ### La Recta Numérica: El Mapa del Universo
-        La recta es el fundamento de todo. Imagina una línea que no tiene fin en ninguna dirección. 
-        - El <b>Cero (0)</b>: No es "nada", es el punto de origen, el equilibrio.
-        - Los <b>Positivos</b>: Representan lo que "es" o lo que avanza.
-        - Los <b>Negativos</b>: Representan la dirección opuesta, la deuda o lo que falta.
-        </div>
+        st.subheader("A) Reglas para Suma y Resta")
+        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
+        st.latex(r"(+) + (+) = (+)")
+        st.latex(r"(-) + (-) = (-)")
+        st.latex(r"(+) + (-) = \text{Signo del número con mayor valor absoluto}")
+        st.markdown("</div>", unsafe_allow_html=True)
+        st.write("""
+        <p class='explicacion-paso'>¿Cómo leer esto?</p>
+        Si sumas dos deudas, tendrás una deuda más grande. Si sumas un número positivo y uno negativo, imagina una cuerda: el número más fuerte (más grande) arrastra el resultado hacia su signo.
         """, unsafe_allow_html=True)
-        st.latex(r"x \in \mathbb{R} \quad \text{donde } -\infty < x < +\infty")
 
-    elif capitulo == "1.3 Operaciones Fundamentales (Deducción)":
-        st.write("## 1.3 Deducción de las Operaciones")
-        
-        with st.expander("Deducción de la Suma y la Resta", expanded=True):
-            st.write("""
-            La suma es **acumulación**. Si defines $1+1=2$, estás definiendo que dos unidades juntas crean una nueva categoría.
-            
-            **La Resta:** No existe como operación independiente. Restar es simplemente sumar un número negativo.
-            """)
-            st.latex(r"a - b = a + (-b)")
-            st.info("Fundamento: Por eso las reglas de los signos funcionan. Restar una deuda es lo mismo que recibir dinero.")
-
-        with st.expander("Deducción de la Multiplicación", expanded=True):
-            st.write("""
-            La multiplicación es una **suma abreviada**. 
-            """)
-            st.latex(r"a \cdot n = \underbrace{a + a + \dots + a}_{n \text{ veces}}")
-            st.write("Si entiendes esto, entiendes por qué cualquier número multiplicado por 0 es 0: porque estás sumando algo 'cero veces'.")
-
-    elif capitulo == "1.4 Fracciones y la Partición del Todo":
-        st.write("## 1.4 Fracciones: La Lógica de la Parte")
-        st.markdown("""
-        <div class='seccion-lectura'>
-        Una fracción no es un número extraño, es un <b>Operador</b>. 
-        - El <b>Denominador</b> (el de abajo): Te dice en cuántas partes cortaste la unidad.
-        - El <b>Numerador</b> (el de arriba): Te dice cuántas de esas partes tienes en la mano.
-        
-        ### ¿Por qué no se pueden sumar fracciones con distinto denominador directamente?
-        Porque no puedes sumar "peras con manzanas". Si tienes 1/2 (media naranja) y 1/3 (un tercio de naranja), los trozos son de distinto tamaño. 
-        Necesitas el <b>Mínimo Común Múltiplo</b> para cortar todos los trozos del mismo tamaño antes de juntarlos.
-        </div>
+        st.subheader("B) Reglas para Multiplicación y División")
+        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
+        st.latex(r"(+) \cdot (+) = (+)")
+        st.latex(r"(-) \cdot (-) = (+)")
+        st.latex(r"(+) \cdot (-) = (-)")
+        st.latex(r"(-) \cdot (+) = (-)")
+        st.markdown("</div>", unsafe_allow_html=True)
+        st.write("""
+        <p class='explicacion-paso'>El fundamento:</p>
+        Multiplicar por un negativo es una orden de 'invertir'. Si inviertes algo que ya estaba invertido (negativo), vuelve a ser original (positivo).
         """, unsafe_allow_html=True)
-        st.latex(r"\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}")
 
-# --- (ESPACIO PARA TOMO II, III, IV, V) ---
-# Aquí iremos pegando los "Libros" completos de Álgebra, Física y Química.
+    elif capitulo == "1.2 Teoría de Fracciones (Partición y Proporción)":
+        st.header("1.2 El Operador Fraccionario")
+        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
+        st.write("**Suma y Resta (Método de la Mariposa/MCM):**")
+        st.latex(r"\frac{a}{b} \pm \frac{c}{d} = \frac{ad \pm bc}{bd}")
+        st.write("**Multiplicación (Directa):**")
+        st.latex(r"\frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd}")
+        st.write("**División (Inversa/Oreja):**")
+        st.latex(r"\frac{a}{b} \div \frac{c}{d} = \frac{ad}{bc}")
+        st.markdown("</div>", unsafe_allow_html=True)
+        st.write("""
+        <p class='explicacion-paso'>Análisis de la Fórmula:</p>
+        En la multiplicación, el numerador ($a$) se multiplica directamente por el otro numerador ($c$). No necesitas buscar comunes denominadores porque estás creando una nueva unidad de medida.
+        """, unsafe_allow_html=True)
 
-elif tomo == "Tomo II: Álgebra (Generalización)":
-    st.write("# Tomo II: Álgebra - El Lenguaje de los Símbolos")
-    st.write("Contenido en construcción: Aquí cargaremos el libro completo de Álgebra.")
+    elif capitulo == "1.3 Potenciación y Radicación (Crecimiento Exponencial)":
+        st.header("1.3 Potencias: Multiplicación Abreviada")
+        st.write("Las potencias nos dicen cuántas veces se multiplica la **Base** por sí misma.")
+        
+        st.markdown("<div class='caja-formula'>", unsafe_allow_html=True)
+        st.latex(r"a^n \cdot a^m = a^{n+m}")
+        st.latex(r"\frac{a^n}{a^m} = a^{n-m}")
+        st.latex(r"(a^n)^m = a^{n \cdot m}")
+        st.latex(r"a^0 = 1 \quad (a \neq 0)")
+        st.markdown("</div>", unsafe_allow_html=True)
+        
+        st.write("""
+        <p class='explicacion-paso'>¿Por qué se suman los exponentes?</p>
+        Si tienes $2^2 \cdot 2^3$, en realidad tienes $(2 \cdot 2) \cdot (2 \cdot 2 \cdot 2)$. En total hay cinco '2'. Por eso $2+3=5$. La fórmula es solo el resumen de lo que ves.
+        """, unsafe_allow_html=True)
 
-st.sidebar.markdown("---")
-st.sidebar.write("🧪 **Fuentes:** Stewart, Baldor, Resnick, Serway.")
+# Espacio para los siguientes tomos
+elif tomo == "Tomo II: Álgebra":
+    st.title("📐 Tomo II: Álgebra General")
+    st.info("Próximamente: Leyes de Newton, Ecuaciones de primer grado y Factorización.")
