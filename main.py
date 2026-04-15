@@ -2,104 +2,95 @@ import streamlit as st
 
 st.set_page_config(page_title="Enciclopedia Universal de Ciencias", layout="wide")
 
-# --- ESTILOS DE LIBRO TÉCNICO ---
+# --- ESTILOS DE LECTURA PROFUNDA ---
 st.markdown("""
     <style>
     .titulo-principal { color: #1e3a8a; font-size: 45px; font-weight: bold; border-bottom: 4px solid #3b82f6; }
-    .texto-profundo { font-size: 19px; line-height: 1.9; text-align: justify; color: #1a202c; padding: 10px; }
-    .caja-ley { background-color: #f8fafc; border: 1px solid #cbd5e1; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.05); }
-    .nota-ingeniero { border-left: 5px solid #eab308; background-color: #fefce8; padding: 15px; margin: 20px 0; font-style: italic; }
-    .paso-titulo { color: #1e40af; font-weight: bold; font-size: 22px; margin-top: 20px; }
+    .texto-profundo { font-size: 19px; line-height: 2.0; text-align: justify; color: #1a202c; padding: 15px; }
+    .caja-ley { background-color: #f8fafc; border: 2px solid #cbd5e1; padding: 30px; border-radius: 12px; margin: 25px 0; }
+    .subtitulo-profundo { color: #1e40af; font-size: 28px; font-weight: bold; margin-top: 35px; border-left: 8px solid #1e40af; padding-left: 15px; }
+    .paso-a-paso { background-color: #f0fdf4; border-left: 5px solid #16a34a; padding: 20px; margin: 20px 0; font-family: 'Courier New', Courier, monospace; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- NAVEGACIÓN DE BIBLIOTECA ---
+# --- NAVEGACIÓN ---
 st.sidebar.title("📚 Biblioteca Universal")
-tomo = st.sidebar.selectbox("Seleccionar Tomo:", 
-    ["Tomo I: Aritmética y Teoría Numérica", "Tomo II: Álgebra", "Tomo III: Física", "Tomo IV: Química"])
+tomo = st.sidebar.selectbox("Seleccionar Tomo:", ["Tomo I: Aritmética Profunda", "Tomo II: Álgebra", "Tomo III: Física", "Tomo IV: Química"])
 
-if tomo == "Tomo I: Aritmética y Teoría Numérica":
-    st.markdown("<div class='titulo-principal'>Tomo I: El Fundamento de las Cantidades</div>", unsafe_allow_html=True)
+if tomo == "Tomo I: Aritmética Profunda":
+    st.markdown("<div class='titulo-principal'>Tomo I: Aritmética y Fundamentos Lógicos</div>", unsafe_allow_html=True)
     
-    capitulo = st.sidebar.radio("Navegar por los Capítulos:", [
-        "1.1 Los Signos y la Lógica Operativa", 
-        "1.2 Fracciones, Decimales y Porcentajes", 
-        "1.3 Potencias, Raíces y Logaritmos",
-        "1.4 Jerarquía de Operaciones (PEMDAS)",
-        "1.5 Proporcionalidad (Regla de Tres Simple y Compuesta)"
+    capitulo = st.sidebar.radio("Capítulos Detallados:", [
+        "1.1 Los Signos y la Lógica Operativa (Completo)", 
+        "1.2 Fracciones, Decimales y Porcentajes (Completo)",
+        "1.3 Potencias, Raíces y Logaritmos (En desarrollo)",
+        "1.4 Jerarquía de Operaciones",
+        "1.5 Proporcionalidad"
     ])
 
-    # --- CAPÍTULO 1.1 ---
-    if capitulo == "1.1 Los Signos y la Lógica Operativa":
-        st.header("1.1 El Dominio de los Signos: Leyes Universales")
+    if capitulo == "1.1 Los Signos y la Lógica Operativa (Completo)":
+        st.markdown("<div class='subtitulo-profundo'>1.1 El Dominio de los Signos: Más allá de las reglas</div>", unsafe_allow_html=True)
         st.markdown("<div class='texto-profundo'>", unsafe_allow_html=True)
         st.write("""
-        Para un estudiante de ingeniería, los signos no son adornos; son **operadores de dirección**. En el mundo real, un signo negativo puede significar una fuerza de compresión, una deuda financiera o un retroceso en una trayectoria.
+        El estudio de los signos es el estudio de la **polaridad**. En matemáticas, un signo no indica solo si algo es 'bueno' o 'malo', sino su posición respecto al **Cero (Punto de Equilibrio)**. 
+        
+        ### I. La Naturaleza de la Adición y Sustracción
+        Cuando sumamos o restamos, estamos desplazándonos por la recta numérica. El error común es tratar de memorizar 'más por menos' en la suma. **Error grave.** La suma se rige por la **Magnitud y la Dirección**.
+        
+        **A. Números con Signos Iguales:** Se suman sus valores absolutos y se mantiene el signo. Si debes 5 y pides prestados otros 10, tu deuda total es de 15.
         """)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
-            st.subheader("Ley de la Adición (Suma/Resta)")
-            st.write("Cuando los signos son iguales, las magnitudes se acumulan:")
-            st.latex(r"(-a) + (-b) = -(a+b)")
-            st.write("Cuando los signos son diferentes, las magnitudes se restan:")
-            st.latex(r"a + (-b) = a - b")
-            st.markdown("</div>", unsafe_allow_html=True)
-            
-        with col2:
-            st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
-            st.subheader("Ley del Producto (Multiplicación/División)")
-            st.latex(r"(+) \times (+) = (+)")
-            st.latex(r"(-) \times (-) = (+)")
-            st.latex(r"(+) \times (-) = (-)")
-            st.latex(r"(-) \times (+) = (-)")
-            st.markdown("</div>", unsafe_allow_html=True)
-
-    # --- CAPÍTULO 1.3 ---
-    elif capitulo == "1.3 Potencias, Raíces y Logaritmos":
-        st.header("1.3 Operaciones de Orden Superior")
-        
-        st.markdown("<div class='paso-titulo'>Leyes de los Exponentes (Fundamento del Crecimiento)</div>", unsafe_allow_html=True)
-        st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
-        st.latex(r"a^m \cdot a^n = a^{m+n}")
-        st.latex(r"\frac{a^m}{a^n} = a^{m-n}")
-        st.latex(r"(a^m)^n = a^{m \cdot n}")
-        st.latex(r"(a \cdot b)^n = a^n \cdot b^n")
-        st.latex(r"a^{-n} = \frac{1}{a^n}")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        st.markdown("<div class='paso-titulo'>Radicación: La operación inversa</div>", unsafe_allow_html=True)
-        st.write("Una raíz es en realidad una potencia con un exponente fraccionario.")
         st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
-        st.latex(r"\sqrt[n]{a} = a^{1/n}")
-        st.latex(r"\sqrt[n]{a \cdot b} = \sqrt[n]{a} \cdot \sqrt[n]{b}")
-        st.latex(r"\sqrt[n]{\frac{a}{b}} = \frac{\sqrt[n]{a}}{\sqrt[n]{b}}")
+        st.latex(r"(+a) + (+b) = +(a+b)")
+        st.latex(r"(-a) + (-b) = -(a+b)")
+        st.write("**Ejemplo:** $(-120) + (-80) = -200$")
         st.markdown("</div>", unsafe_allow_html=True)
 
-        st.markdown("<div class='paso-titulo'>Logaritmos: ¿A qué potencia debo elevar?</div>", unsafe_allow_html=True)
-        st.write("El logaritmo responde a la pregunta: ¿Cuántas veces debo multiplicar la base para llegar al número?")
+        st.markdown("<div class='texto-profundo'>", unsafe_allow_html=True)
+        st.write("""
+        **B. Números con Signos Diferentes:** Se restan sus valores absolutos (el mayor menos el menor) y el resultado lleva el signo del número con mayor magnitud.
+        """)
+        st.markdown("</div>", unsafe_allow_html=True)
+        st.latex(r"(+a) + (-b) \implies \text{Si } |a| > |b|, \text{ resultado es } (+)")
+        
+        st.markdown("<div class='subtitulo-profundo'>II. Leyes Multiplicativas (El Operador de Inversión)</div>", unsafe_allow_html=True)
+        st.write("Aquí el signo actúa como un interruptor. El signo $(-)$ invierte la dirección.")
+        
         st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
-        st.latex(r"\log_b(x) = y \iff b^y = x")
-        st.latex(r"\log(a \cdot b) = \log(a) + \log(b)")
-        st.latex(r"\log\left(\frac{a}{b}\right) = \log(a) - \log(b)")
-        st.latex(r"\log(a^n) = n \cdot \log(a)")
+        st.latex(r"(+) \cdot (+) = (+)")
+        st.latex(r"(-) \cdot (-) = (+)")
+        st.latex(r"(+) \cdot (-) = (-)")
+        st.latex(r"(-) \cdot (+) = (-)")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # --- CAPÍTULO 1.5 ---
-    elif capitulo == "1.5 Proporcionalidad (Regla de Tres Simple y Compuesta)":
-        st.header("1.5 Relaciones de Proporción")
-        st.write("Esta es la herramienta más usada en la vida cotidiana y técnica para escalar medidas.")
+    elif capitulo == "1.2 Fracciones, Decimales y Porcentajes (Completo)":
+        st.markdown("<div class='subtitulo-profundo'>1.2 La Partición de la Unidad: Fracciones y sus Equivalentes</div>", unsafe_allow_html=True)
         
-        st.subheader("1. Regla de Tres Simple Directa")
-        st.write("Si una variable sube y la otra también (ejemplo: más gasolina = más kilómetros).")
-        st.latex(r"\frac{a}{b} = \frac{c}{x} \implies x = \frac{b \cdot c}{a}")
+        st.write("### I. Teoría de la Fracción")
+        st.write("Una fracción es un cociente no realizado. Es la expresión exacta de una división.")
         
-        st.subheader("2. Regla de Tres Simple Inversa")
-        st.write("Si una variable sube y la otra baja (ejemplo: más obreros = menos tiempo de trabajo).")
-        st.latex(r"a \cdot b = c \cdot x \implies x = \frac{a \cdot b}{c}")
+        st.markdown("<div class='caja-ley'>", unsafe_allow_html=True)
+        st.write("**Suma de Fracciones Heterogéneas (Distinto Denominador):**")
+        st.latex(r"\frac{a}{b} + \frac{c}{d} = \frac{(a \cdot d) + (b \cdot c)}{b \cdot d}")
+        st.write("**Multiplicación:**")
+        st.latex(r"\frac{a}{b} \cdot \frac{c}{d} = \frac{a \cdot c}{b \cdot d}")
+        st.write("**División (Producto Cruzado):**")
+        st.latex(r"\frac{a}{b} \div \frac{c}{d} = \frac{a \cdot d}{b \cdot c}")
+        st.markdown("</div>", unsafe_allow_html=True)
 
-# --- SECCIÓN PARA FUTUROS TOMOS ---
-elif tomo == "Tomo II: Álgebra":
-    st.header("📐 Tomo II: Álgebra General")
-    st.write("Estamos preparando el despliegue de **Factorización**, **Productos Notables** y **Sistemas de Ecuaciones** con la misma profundidad.")
+        st.write("### II. Transformación a Decimales")
+        st.write("Todo número fraccionario tiene una representación decimal que se obtiene dividiendo el numerador por el denominador.")
+        st.markdown("<div class='paso-a-paso'>", unsafe_allow_html=True)
+        st.write("1. Fracción: 3/4")
+        st.write("2. Proceso: 3 ÷ 4 = 0.75")
+        st.write("3. Interpretación: El 75% de la unidad.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.write("### III. Porcentajes: La base 100")
+        st.write("El porcentaje es una fracción cuyo denominador es siempre 100.")
+        st.latex(r"x\% = \frac{x}{100}")
+        st.write("**Cálculo de un porcentaje de una cantidad:**")
+        st.latex(r"\text{Total} \cdot \left(\frac{\%}{100}\right)")
+
+# Seguiremos expandiendo los demás capítulos de la misma forma masiva.
